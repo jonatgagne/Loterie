@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loterie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .number-input {
+            margin: 5px;
+        }
+        .winner {
+            font-size: 1.5em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loterie</h1>
+    <form id="lotteryForm">
+        <div id="numberInputs"></div>
+        <button type="button" onclick="drawWinner()">Tirer au sort</button>
+    </form>
+    <div id="winner" class="winner"></div>
+
+    <script>
+        les champs de formulaire pour 100 numéros
+        const numberInputs = document.getElementById('numberInputs');
+        for (let i = 1; i <= 100; i++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = `Nom pour le numéro ${i}`;
+            input.className = 'number-input';
+            input.id = `number${i}`;
+            numberInputs.appendChild(input);
+        }
+
+        // Fonction pour tirer au sort un numéro gagnant
+        function drawWinner() {
+            const winnerIndex = Math.floor(Math.random() * 100) + 1;
+            const winnerName = document.getElementById(`number${winnerIndex}`).value;
+            document.getElementById('winner').innerText = `Le numéro gagnant est ${winnerIndex} (${winnerName})`;
+        }
+    </script>
+</body>
+</html>
